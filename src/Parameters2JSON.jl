@@ -28,11 +28,26 @@ macro jsonable(expr)
     end)
 end
 
+"""
+    import_json(fl, ::Type{T})
 
+Reads from a file `fl` into a `@jsonable` struct of type `T`.
+
+# Additional Information
+* Wrapper around `JSON3.read(::String, T )`.
+"""
 function import_json(fl, ::Type{T}) where {T}
     return JSON3.read( read(fl, String), T )
 end
 
+"""
+    export_json(mystruct, fl; openmode="w")
+
+Writes the `@jsonable` struct `mystruct` to a file `fl`.
+
+# Additional Information
+* Wrapper around `JSON3.pretty(::IO, mystruct)`.
+"""
 function export_json(mystruct, fl; openmode="w")
     open(fl, openmode) do io 
         JSON3.pretty(io, mystruct)
@@ -40,6 +55,14 @@ function export_json(mystruct, fl; openmode="w")
     nothing
 end
 
+"""
+    pretty_display(io::IO, params)
+
+Writes the `@jsonable` struct `params` to an `IO` stream.
+
+# Additional Information
+* Further prettifies a call to `JSON3.pretty(::IO, params)`.
+"""
 function pretty_display(io::IO, params)
     println(io, "\nValues for $(typeof(params)):")
     JSON3.pretty(io, params)
@@ -47,8 +70,24 @@ function pretty_display(io::IO, params)
     return nothing 
 end
 
+"""
+    pretty_display(params)
+
+Writes the `@jsonable` struct `params` to an `stdout`.
+
+# Additional Information
+* Further prettifies a call to `JSON3.pretty(stdout, params)`.
+"""
 pretty_display(params) = pretty_display(stdout, params)
 
+"""
+    import_json_and_display(fl, ::Type{T}, io::IO = stdout)
+
+Reads from a file `fl` into a `@jsonable` struct of type `T` and calls `pretty_display` on the result.
+
+# Additional Information
+* I think I'll destroy this function and merge it into `import_json` as a different method.
+"""
 function import_json_and_display(fl, ::Type{T}, io::IO = stdout) where {T}
     println("\nImporting values from $fl...")
     params = import_json(fl, T)
