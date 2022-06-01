@@ -10,6 +10,10 @@ export import_json, export_json, pretty_display, import_json_and_display
     @jsonable [mutable] struct Foo ... end
 
 Convenience macro allowing JSON import, exports, and displays for structs.
+
+# Additional Information
+One __must__ have the [StructTypes](https://github.com/JuliaData/StructTypes.jl/tree/master) package
+`Pkg.add`ed in order to use any JSON functionality.
 """
 macro jsonable(expr)
     # Only allow operations for mutable and immutable structs
@@ -22,7 +26,6 @@ macro jsonable(expr)
         $expr 
         StructTypes.StructType(::Type{$struct_name}) = StructTypes.Struct() 
     end)
-    # return nothing
 end
 
 
