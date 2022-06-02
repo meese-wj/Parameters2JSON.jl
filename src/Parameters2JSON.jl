@@ -3,8 +3,10 @@ module Parameters2JSON
 using JSON3
 using StructTypes
 
-export @jsonable, StructType, Struct
+export @jsonable, implement_structtypes, StructType, Struct, find_struct_Symbol, has_expr
 export import_json, export_json, pretty_display, import_json_and_display
+
+include("struct_parsers.jl")
 
 """
     @jsonable [mutable] struct Foo ... end
@@ -19,12 +21,15 @@ macro jsonable(expr)
     # Only allow operations for mutable and immutable structs
     expr.head == :struct ? nothing : throw(ArgumentError("JSONable macro must be used on structs."))
     # Determine the type of struct
-    struct_name = expr.args[ findall( x -> typeof(x) == Symbol, expr.args )[1] ]
+    # struct_name = expr.args[ findall( x -> typeof(x) == Symbol, expr.args )[1] ] # Breaks for templated structs 
+    struct_name = strip_struct_name( expr )
     # Define the StructType function from StructTypes for use in JSON3 functions
+    structtype_expr = implement_structtypes(expr)
     return esc(quote
         import StructTypes
         $expr 
-        StructTypes.StructType(::Type{$struct_name}) = StructTypes.Struct() 
+        # StructTypes.StructType(::Type{$struct_name}) = StructTypes.Struct() 
+        $structtype_expr
     end)
 end
 
