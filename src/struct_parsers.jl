@@ -110,6 +110,7 @@ function _jsonable(expr)
     st_name = _struct_name(expr)
     st_StrucType_fn = implement_structtypes(expr)
     return quote
+        import StructTypes
         $expr
         $st_StrucType_fn
     end   
