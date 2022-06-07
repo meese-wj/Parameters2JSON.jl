@@ -105,7 +105,6 @@ function implement_structtypes(expr)
 end
 
 function _jsonable(expr)
-    @show expr
     _is_struct(expr) # Throws an ArgumentError if the expr is not a struct expression
     st_name = _struct_name(expr)
     st_StrucType_fn = implement_structtypes(expr)
