@@ -34,7 +34,6 @@ One __must__ have the [StructTypes](https://github.com/JuliaData/StructTypes.jl/
 # end
 
 macro jsonable(expr)
-    @show expr
     return esc(_jsonable(expr))
 end
 """
