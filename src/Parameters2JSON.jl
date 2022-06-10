@@ -63,6 +63,31 @@ function pretty_display(io::IO, params)
 end
 
 """
+    pretty_display(str::String, params)
+
+Writes the `@jsonable` struct `params` to a string `str` and returns it.
+
+# Additional Information
+* Further prettifies a call to `JSON3.pretty(::IO, params)`.
+"""
+function pretty_display(str::String, params)
+    temp_io = IOBuffer()
+    pretty_display(temp_io, params)
+    str = String(take!(temp_io))
+end
+
+"""
+    pretty_display(::Type{String}, params)
+
+Writes the `@jsonable` struct `params` to a string and returns it.
+
+# Additional Information
+* Further prettifies a call to `JSON3.pretty(::IO, params)`.
+"""
+pretty_display(::Type{String}, params) = pretty_display("", params)
+
+
+"""
     pretty_display(params)
 
 Writes the `@jsonable` struct `params` to an `stdout`.
