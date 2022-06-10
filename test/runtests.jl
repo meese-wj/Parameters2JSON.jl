@@ -4,13 +4,23 @@ using Test
 
 
 @testset "Parameters2JSON.jl" begin
-    # Test a basic @jsonable struct
-    @test begin
-        @jsonable struct TestParams
+    # Test a basic jsonable struct
+    @test let
+        @jsonable struct BasicParam
             x
         end
         inside = "I'm a test"
-        output_string = "\nValues for TestParams:\n{\n   \"x\": \"$inside\"\n}\n\n"
-        output_string == pretty_display(String, TestParams(inside))       
+        output_string = "\nValues for BasicParam:\n{\n   \"x\": \"$inside\"\n}\n\n"
+        output_string == pretty_display(String, BasicParam(inside))       
+    end
+
+    # Test a parametric jsonable struct
+    @test let
+        @jsonable struct ParametricParam{T <: Int}
+            x::T
+        end
+        inside = 42
+        output_string = "\nValues for ParametricParam{Int64}:\n{\n   \"x\": $inside\n}\n\n"
+        output_string == pretty_display(String, ParametricParam(inside))
     end
 end
