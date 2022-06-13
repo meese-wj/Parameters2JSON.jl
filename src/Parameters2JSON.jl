@@ -23,7 +23,7 @@ end
 """
     import_json(fl, ::Type{T})
 
-Reads from a file `fl` into a `@jsonable` struct of type `T`.
+Reads from a file `fl` into a [@jsonable](@ref) struct of type `T`.
 
 # Additional Information
 * Wrapper around `JSON3.read(::String, T )`.
@@ -35,7 +35,7 @@ end
 """
     export_json(mystruct, fl; openmode="w")
 
-Writes the `@jsonable` struct `mystruct` to a file `fl`.
+Writes the [@jsonable](@ref) struct `mystruct` to a file `fl`.
 
 # Additional Information
 * Wrapper around `JSON3.pretty(::IO, mystruct)`.
@@ -50,7 +50,7 @@ end
 """
     pretty_display(io::IO, params)
 
-Writes the `@jsonable` struct `params` to an `IO` stream.
+Writes the [@jsonable](@ref) struct `params` to an `IO` stream.
 
 # Additional Information
 * Further prettifies a call to `JSON3.pretty(::IO, params)`.
@@ -65,7 +65,7 @@ end
 """
     pretty_display(str::String, params)
 
-Writes the `@jsonable` struct `params` to a string `str` and returns it.
+Writes the [@jsonable](@ref) struct `params` to a string `str` and returns it.
 
 # Additional Information
 * Further prettifies a call to `JSON3.pretty(::IO, params)`.
@@ -79,7 +79,7 @@ end
 """
     pretty_display(::Type{String}, params)
 
-Writes the `@jsonable` struct `params` to a string and returns it.
+Writes the [@jsonable](@ref) struct `params` to a string and returns it.
 
 # Additional Information
 * Further prettifies a call to `JSON3.pretty(::IO, params)`.
@@ -90,7 +90,7 @@ pretty_display(::Type{String}, params) = pretty_display("", params)
 """
     pretty_display(params)
 
-Writes the `@jsonable` struct `params` to an `stdout`.
+Writes the [@jsonable](@ref) struct `params` to an `stdout`.
 
 # Additional Information
 * Further prettifies a call to `JSON3.pretty(stdout, params)`.
@@ -100,7 +100,7 @@ pretty_display(params) = pretty_display(stdout, params)
 """
     import_json_and_display(fl, ::Type{T}, io::IO = stdout)
 
-Reads from a file `fl` into a `@jsonable` struct of type `T` and calls `pretty_display` on the result.
+Reads from a file `fl` into a [@jsonable](@ref) struct of type `T` and calls [pretty_display](@ref) on the result.
 
 # Additional Information
 * I think I'll destroy this function and merge it into `import_json` as a different method.
