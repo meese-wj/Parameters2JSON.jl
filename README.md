@@ -1,5 +1,8 @@
 # Parameters2JSON
 
+[![Run tests](https://github.com/meese-wj/Parameters2JSON.jl/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/meese-wj/Parameters2JSON.jl/actions/workflows/test.yml)
+
+
 This is a `Julia` package turns `struct` parameters into `JSON` files (and back) with the [JSON3 package](https://github.com/quinnj/JSON3.jl) as well as the [StructTypes package](https://github.com/JuliaData/StructTypes.jl/tree/master). 
 
 **Note:** The `StructTypes` package must be explicitly `Pkg.add`ed to the current Julia environment, but it does not need to be explicitly `import`ed to use the `@jsonable` macro.
