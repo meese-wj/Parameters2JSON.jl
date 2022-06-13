@@ -16,3 +16,7 @@ makedocs(;
         "Home" => "index.md",
     ],
 )
+
+deploydocs(;
+    repo="github.com/meese-wj/Parameters2JSON.jl",
+)
