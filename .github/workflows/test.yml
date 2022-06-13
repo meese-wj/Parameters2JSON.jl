@@ -2,7 +2,7 @@
 # TODO: For whatever reason, the macro expansion on x86 tests fail on all
 #       operating systems...
 
-name: Run tests
+name: Tests
 
 on: [push, pull_request]
 
