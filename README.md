@@ -1,7 +1,7 @@
 # Parameters2JSON
 
 [![Tests](https://github.com/meese-wj/Parameters2JSON.jl/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/meese-wj/Parameters2JSON.jl/actions/workflows/test.yml)
-[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://meese-wj.github.io/Parameters2JSON.jl/dev/)
+[![Documenter](https://img.shields.io/badge/docs-dev-blue.svg)](https://meese-wj.github.io/Parameters2JSON.jl/dev/)
 
 This is a `Julia` package turns `struct` parameters into `JSON` files (and back) with the [JSON3 package](https://github.com/quinnj/JSON3.jl) as well as the [StructTypes package](https://github.com/JuliaData/StructTypes.jl/tree/master).
 
